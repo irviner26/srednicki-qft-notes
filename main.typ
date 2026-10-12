@@ -1,6 +1,6 @@
 #set document(
-  title: [My Document],
-  author: "Your Name",
+  title: [QFT Notes],
+  author: "Irvine Ringgo",
 )
 #set page(
   paper: "a4",
@@ -14,12 +14,16 @@
 )
 
 #set par(
-  justify: true, 
+  justify: true,
   linebreaks: "optimized",
 )
 
 #set heading(
-  numbering: "1.1."
+  numbering: "1.1.",
 )
+
+#align(center)[
+  #text(size: 20pt, weight: "bold")[QFT Notes]
+]
 
 #include "chapters/01.typ"
