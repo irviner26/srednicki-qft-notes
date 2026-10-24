@@ -218,5 +218,165 @@ $
   commute(tensor(K, -i), tensor(P, -j)) = i hbar (tensor(g, j, 0) tensor(P, i) - tensor(g, j, i) tensor(P, 0)) = -i hbar tensor(delta, -i, -j) H "."
 $
 $
-  commute(tensor(K, -i), tensor(P, 0)) = i hbar (tensor(g, 0, 0) tensor(P, i) - tensor(g, 0, i) tensor(P, 0)) = -i hbar tensor(P, -i) "."
+  commute(tensor(K, -i), H) = i hbar (tensor(g, 0, 0) tensor(P, i) - tensor(g, 0, i) tensor(P, 0)) = -i hbar tensor(P, -i) "."
+$
+The components of $P$ should be able to commute with each other
+$
+  commute(tensor(P, mu), tensor(P, nu)) = 0 "."
+$
+All of the commutation relation of operator that we have derived form the Lie algebra for the *Poincare group*.
+
+Now let us consider the Lorentz transformation of a scalar quantum field. We can take the analogy straight from time dependent wave equation seen from the Heisenberg picture with futher relativistic generalization.
+$
+  exp(frac(-i P x, hbar)) phi(0) exp(frac(i P x, hbar)) = phi(x) "."
+$
+Define unitary spacetime translation operator as
+$
+  T(a) equiv exp(frac(-i tensor(P, mu) tensor(x, mu), hbar)) "."
+$
+Then we have
+$
+  T(a)^(-1) phi(x) T(a) = phi(x - a) "."
+$
+And for the infinitesimal translation
+$
+  T(delta a) = I - frac(i, hbar) tensor(delta a, -mu) tensor(P, mu) "."
+$
+Comparing the infinitesimal translation and the previous infinitesimal Lorentz transformation, with $macron(x) = Lambda^(-1) x$, Lorentz transformation of a scalar field equation will be
+$
+  U(Lambda)^(-1) phi(x) U(Lambda) = phi(Lambda^(-1) x) "."
+$
+What would happen if we apply derivative operator to the transformation.
+$
+  tensor(partial, mu) [U(Lambda)^(-1) phi(x) U(Lambda)] & = U(Lambda)^(-1) tensor(partial, mu) phi(x) U(Lambda) \
+                                                        & = tensor(partial, mu) phi(Lambda^(-1) x) "."
+$
+Let us examine the derivative operator first. If we have the transformation $macron(x) = Lambda^(-1) x$ then, like we have seen in the first chapter that the derivatives follow.
+$
+  tensor(macron(partial), mu) & = tensor((Lambda^(-1)), mu, -nu) tensor(partial, nu) \
+          tensor(partial, mu) & = tensor(Lambda, mu, -nu) tensor(macron(partial), nu) "."
+$
+So, no we have
+$
+  U(Lambda)^(-1) tensor(partial, mu) phi(x) U(Lambda) & = tensor(Lambda, mu, -nu) tensor(macron(partial), nu) phi(Lambda^(-1) x) "."
+$
+If we contract the derivative operator with another derivative operator, we will get
+$
+  U(Lambda)^(-1) tensor(partial, -mu) tensor(partial, mu) phi(x) U(Lambda) & = tensor(partial, -mu) tensor(Lambda, mu, -nu) tensor(macron(partial), nu) phi(Lambda^(-1) x) "."
+$
+We first can lower the indices of the derivative transformation.
+$
+  tensor(g, -rho, -mu) tensor(partial, mu) & = tensor(g, -rho, -mu) tensor(Lambda, mu, -nu) tensor(macron(partial), nu) \
+  tensor(partial, -rho) & = tensor(Lambda, -rho, -nu) tensor(g, nu, sigma) tensor(macron(partial), -sigma) \
+  & = tensor(Lambda, -rho, sigma) tensor(macron(partial), -sigma) \
+  & = tensor((Lambda^(-1)), sigma, -rho) tensor(macron(partial), -sigma)
+$
+so,
+$
+  U(Lambda)^(-1) tensor(partial, -mu) tensor(partial, mu) phi(x) U(Lambda) & = tensor((Lambda^(-1)), sigma, -mu) tensor(macron(partial), -sigma) tensor(Lambda, mu, -nu) tensor(macron(partial), nu) phi(Lambda^(-1) x) \
+  & = tensor(delta, sigma, -nu) tensor(macron(partial), -sigma) tensor(macron(partial), nu) phi(Lambda^(-1) x) \
+  & = tensor(macron(partial), -mu) tensor(macron(partial), mu) phi(Lambda^(-1) x) "."
+$
+Now, we can see that the Klein-Gordon equation is invariant under Lorentz transformation.
+$
+  U(Lambda)^(-1) ( - tensor(partial, -mu) tensor(partial, mu) + frac(m^2, hbar^2 c^2)) phi(x) U(Lambda) = (- tensor(macron(partial), -mu) tensor(macron(partial), mu) + frac(m^2, hbar^2 c^2)) phi(Lambda^(-1) x) "."
+$
+Now, we will see what would happen if we take infinitesimal Lorentz transformation for the scalar field.
+$
+  U(Lambda)^(-1) phi(x) U(Lambda) & = (bb(1) - frac(i, 2hbar) tensor(delta omega, -mu, -nu) tensor(M, mu, nu)) phi(x) (bb(1) + frac(i, 2hbar) tensor(delta omega, -alpha, -beta) tensor(M, alpha, beta)) \
+  & = phi(x) + frac(i, 2 hbar) tensor(delta omega, -mu, -nu) commute(phi(x), tensor(M, mu, nu)) + dots \
+$
+$
+  phi(tensor((Lambda^(-1)), mu, -nu) x^nu) & = phi(tensor(Lambda, -nu, mu) tensor(x, nu)) \
+  & = phi(x) + (tensor(Lambda, -nu, +mu) tensor(x, nu) - tensor(x, mu)) tensor(partial, -mu) phi(x) \
+  & = phi(x) + tensor(delta omega, -nu, mu) tensor(x, nu) tensor(partial, -mu) phi(x) \
+  & = phi(x) + tensor(delta omega, -nu, -mu) tensor(x, nu) tensor(partial, mu) phi(x) "."
+$
+Now, if we equate both sides,
+$
+  frac(i, 2 hbar) tensor(delta omega, -mu, -nu) commute(phi(x), tensor(M, mu, nu)) & = tensor(delta omega, -nu, -mu) tensor(x, nu) tensor(partial, mu) phi(x) \
+  & = frac(1, 2) (tensor(delta omega, -nu, -mu) tensor(x, nu) tensor(partial, mu) phi(x) + tensor(delta omega, -nu, -mu) tensor(x, nu) tensor(partial, mu) phi(x)) \
+  frac(i, hbar) tensor(delta omega, -mu, -nu) commute(phi(x), tensor(M, mu, nu)) & = tensor(delta omega, -mu, -nu) tensor(x, mu) tensor(partial, nu) phi(x) + tensor(delta omega, -nu, -mu) tensor(x, nu) tensor(partial, mu) phi(x) \
+  commute(phi(x), tensor(M, mu, nu)) & = frac(hbar, i) [tensor(x, mu) tensor(partial, nu) - tensor(x, nu) tensor(partial, mu)] phi(x) \
+$
+if we then define $tensor(cal(L), mu, nu) = frac(hbar, i) [tensor(x, mu) tensor(partial, nu) - tensor(x, nu) tensor(partial, mu)]$,
+$
+  commute(phi(x), tensor(M, mu, nu)) = tensor(cal(L), mu, nu) phi(x) "."
+$
+Let us examine another commutation relation
+$
+  commute(commute(phi(x), tensor(M, mu, nu)), tensor(M, rho, sigma)) & = commute(tensor(cal(L), mu, nu) phi(x), tensor(M, rho, sigma)) \
+  & = tensor(cal(L), mu, nu) commute(phi(x), tensor(M, rho, sigma)) + commute(tensor(cal(L), mu, nu), tensor(M, rho, sigma)) phi(x) \
+  & = tensor(cal(L), mu, nu) tensor(cal(L), rho, sigma) phi(x) + commute(tensor(cal(L), mu, nu), tensor(M, rho, sigma)) phi(x) \
+  & = tensor(cal(L), mu, nu) tensor(cal(L), rho, sigma) phi(x) + tensor(cal(L), mu, nu) tensor(M, rho, sigma) phi(x) - tensor(M, rho, sigma) tensor(cal(L), mu, nu) phi(x) \
+  & = tensor(cal(L), mu, nu) tensor(cal(L), rho, sigma) phi(x) + tensor(M, rho, sigma) tensor(cal(L), mu, nu) phi(x) - tensor(M, rho, sigma) tensor(cal(L), mu, nu) phi(x) \
+  & = tensor(cal(L), mu, nu) tensor(cal(L), rho, sigma) phi(x) "."
+$
+Using the Jacobi identity, that is, $commute(commute(A, B), C) + commute(commute(B, C), A) + commute(commute(C, A), B) = 0$, we could examine
+$
+  commute(phi(x), commute(tensor(M, mu, nu), tensor(M, rho, sigma))) & = commute(commute(tensor(M, rho, sigma), psi(x)), tensor(M, mu, nu)) + commute(commute(psi(x), tensor(M, mu, nu)), tensor(M, rho, sigma)) \
+  & = commute(tensor(cal(L), mu, nu) phi(x), tensor(M, rho, sigma)) - commute(tensor(cal(L), rho, sigma) phi(x), tensor(M, mu, nu)) \
+  & = tensor(cal(L), mu, nu) tensor(cal(L), rho, sigma) phi(x) - tensor(cal(L), rho, sigma) tensor(cal(L), mu, nu) phi(x) \
+  & = (tensor(cal(L), mu, nu) tensor(cal(L), rho, sigma) - tensor(cal(L), rho, sigma) tensor(cal(L), mu, nu)) phi(x) "."
+$
+Before we start to expand the right hand side, let it be known that
+$
+  tensor(partial, alpha) (tensor(x, beta) tensor(partial, gamma)) & = (tensor(partial, alpha) tensor(x, beta)) tensor(partial, gamma) + tensor(x, beta) tensor(partial, alpha) tensor(partial, beta) \
+  & = tensor(g, alpha beta) tensor(partial, gamma) + tensor(x, beta) tensor(partial, alpha) tensor(partial, gamma) "."
+$
+$
+  tensor(cal(L), mu, nu) tensor(cal(L), rho, sigma) phi(x) & = - hbar^2 (tensor(x, mu) tensor(partial, nu) - tensor(x, nu) tensor(partial, mu)) (tensor(x, rho) tensor(partial, sigma) - tensor(x, sigma) tensor(partial, rho)) psi(x) \
+  & = - hbar^2 (tensor(x, mu) tensor(partial, nu) tensor(x, rho) tensor(partial, sigma) - tensor(x, mu) tensor(partial, nu) tensor(x, sigma) tensor(partial, rho) - tensor(x, nu) tensor(partial, mu) tensor(x, rho) tensor(partial, sigma) + tensor(x, nu) tensor(partial, mu) tensor(x, sigma) tensor(partial, rho)) phi(x) \
+  & = -hbar^2 (tensor(g, nu, rho) tensor(x, mu) tensor(partial, sigma) + tensor(x, mu) tensor(x, rho) tensor(partial, nu) tensor(partial, sigma) - tensor(g, nu, sigma) tensor(x, mu) tensor(partial, rho) - tensor(x, mu) tensor(x, sigma) tensor(partial, nu) tensor(partial, rho) \
+    & - tensor(g, mu, rho) tensor(x, nu) tensor(partial, sigma) - tensor(x, nu) tensor(x, rho) tensor(partial, mu) tensor(partial, sigma) + tensor(g, mu, sigma) tensor(x, nu) tensor(partial, rho) + tensor(x, nu) tensor(x, sigma) tensor(partial, mu) tensor(partial, rho)) phi(x) "."
+$
+$
+  - tensor(cal(L), rho, sigma) tensor(cal(L), mu, nu) phi(x) & = hbar^2 (tensor(g, sigma, mu) tensor(x, rho) tensor(partial, nu) + tensor(x, rho) tensor(x, mu) tensor(partial, sigma) tensor(partial, nu) - tensor(g, sigma, nu) tensor(x, rho) tensor(partial, mu) - tensor(x, rho) tensor(x, nu) tensor(partial, sigma) tensor(partial, mu) \
+    & - tensor(g, rho, mu) tensor(x, sigma) tensor(partial, nu) - tensor(x, sigma) tensor(x, mu) tensor(partial, rho) tensor(partial, nu) + tensor(g, rho, nu) tensor(x, sigma) tensor(partial, mu) + tensor(x, sigma) tensor(x, nu) tensor(partial, rho) tensor(partial, mu)) phi(x) "."
+$
+So,
+$
+  & tensor(cal(L), mu, nu) tensor(cal(L), rho, sigma) - tensor(cal(L), rho, sigma) tensor(cal(L), mu, nu) \
+  & = i hbar (tensor(g, mu, rho) tensor(cal(L), nu, sigma) - tensor(g, nu rho) tensor(cal(L), mu, sigma) - tensor(g, mu, sigma) tensor(cal(L), nu, rho) + tensor(g, nu, sigma) tensor(cal(L), mu, rho)) "."
+$
+Then,
+$
+  commute(phi(x), commute(tensor(M, mu, nu), tensor(M, rho, sigma))) & = (tensor(cal(L), mu, nu) tensor(cal(L), rho, sigma) - tensor(cal(L), rho, sigma) tensor(cal(L), mu, nu)) phi(x) \
+  & = i hbar (tensor(g, mu, rho) tensor(cal(L), nu, sigma) - tensor(g, nu rho) tensor(cal(L), mu, sigma) - tensor(g, mu, sigma) tensor(cal(L), nu, rho) + tensor(g, nu, sigma) tensor(cal(L), mu, rho)) phi(x) \
+  & = i hbar (tensor(g, mu, rho) commute(psi(x), tensor(M, nu, sigma))- tensor(g, nu rho) commute(psi(x), tensor(M, mu, sigma)) - tensor(g, mu, sigma) commute(psi(x), tensor(M, nu, rho)) + tensor(g, nu, sigma) commute(psi(x), tensor(M, mu, rho))) \
+    & = commute(phi(x), i hbar (tensor(g, mu, rho) tensor(M, nu, sigma) - tensor(g, nu rho) tensor(M, mu, sigma) - tensor(g, mu, sigma) tensor(M, nu, rho) + tensor(g, nu, sigma) tensor(M, mu, rho))) "."
+$
+Let us write 
+$
+  tensor(Lambda, rho, -tau) = tensor(delta, rho, -tau) + frac(i, 2 hbar) tensor(delta omega, -mu, -nu) tensor((tensor(S_V, mu, nu)), rho, -tau) ","
+$
+where
+$
+  tensor((tensor(S_V, mu, nu)), rho, -tau) equiv frac(hbar, i) (tensor(g, mu, rho) tensor(delta, nu, -tau) - tensor(g, nu, rho) tensor(delta, mu, -tau))
+$
+are matrices which constitute the vector representation of the Lorentz generators. Then we examine the transformation of field function derivative using infinitesimal Lorentz transformation.
+$
+  U(Lambda)^(-1) tensor(partial, mu) phi(x) U(Lambda) & = (bb(1) - frac(i, 2 hbar) tensor(delta omega, -alpha, -beta) tensor(M, alpha, beta)) tensor(partial, mu) phi(x) (bb(1) + frac(i, 2 hbar) tensor(delta omega, -rho, -sigma) tensor(M, rho, sigma)) \
+  & = tensor(partial, mu) phi(x) + frac(i, 2 hbar) tensor(delta omega, -alpha, -beta) commute(tensor(partial, mu) phi(x), tensor(M, alpha, beta)) + dots
+$
+$
+  tensor(partial, mu) phi(Lambda^(-1) x) & = tensor(partial, mu) phi(tensor(Lambda, -sigma, rho) tensor(x, sigma)) \
+  & = tensor(partial, mu) (phi(x) + (tensor(Lambda, -sigma, rho) tensor(x, sigma) - tensor(x, rho)) tensor(partial, -rho) phi(x)) \
+  & = tensor(partial, mu) (phi(x) + frac(i, 2 hbar) tensor(delta omega, -alpha, - beta) tensor((tensor(S, alpha, beta)), -sigma, rho) tensor(x, sigma) tensor(partial, -rho) phi(x)) \
+  & = tensor(partial, mu) phi(x) + frac(i, 2 hbar) tensor(delta omega, -alpha, - beta) tensor((tensor(S, alpha, beta)), -sigma, rho) tensor(partial, mu) (tensor(x, sigma) tensor(partial, -rho) phi(x)) \
+  & = tensor(partial, mu) phi(x) + frac(i, 2 hbar) tensor(delta omega, -alpha, - beta) tensor((tensor(S, alpha, beta)), -sigma, rho) (tensor(g, mu, sigma) tensor(partial, -rho) psi(x) + tensor(x, sigma) tensor(partial, mu) tensor(partial, -rho) psi(x)) \
+  & = tensor(partial, mu) phi(x) + frac(i, 2 hbar) tensor(delta omega, -alpha, - beta) (tensor((tensor(S, alpha, beta)), mu, -rho) tensor(partial, rho) psi(x) + frac(hbar, i) [tensor(g, alpha, sigma) tensor(delta, beta, -rho) - tensor(g, beta, sigma) tensor(delta, alpha, -rho)] tensor(x, -sigma) tensor(partial, rho) tensor(partial, mu) psi(x)) \
+  & = tensor(partial, mu) phi(x) + frac(i, 2 hbar) tensor(delta omega, -alpha, - beta) (tensor((tensor(S, alpha, beta)), mu, -rho) tensor(partial, rho) psi(x) + frac(hbar, i) [tensor(x, alpha) tensor(partial, beta) - tensor(x, beta) tensor(partial, alpha)] tensor(partial, mu) psi(x)) \
+  & = tensor(partial, mu) phi(x) + frac(i, 2 hbar) tensor(delta omega, -alpha, - beta) (tensor((tensor(S, alpha, beta)), mu, -rho) tensor(partial, rho) psi(x) + tensor(cal(L), alpha, beta) tensor(partial, mu) psi(x)) "."
+$
+So,
+$
+  commute(tensor(partial, mu) phi(x), tensor(M, alpha, beta)) = tensor((tensor(S, alpha, beta)), mu, -rho) tensor(partial, rho) psi(x) + tensor(cal(L), alpha, beta) tensor(partial, mu) psi(x) "."
+$
+Let us examine how the matrix $S$ commutes with each other.
+$
+  tensor(commute(tensor(S, mu, nu), tensor(S, alpha, beta)), rho, -sigma) & = tensor((tensor(S, mu, nu)), rho, -tau) tensor((tensor(S, alpha, beta)), tau, -sigma) - tensor((tensor(S, alpha, beta)), rho, -tau) tensor((tensor(S, mu, nu)), tau, -sigma) \
+  & = - hbar^2 (tensor(g, mu, rho) tensor(delta, nu, -tau) - tensor(g, nu, rho) tensor(delta, mu, -tau)) (tensor(g, alpha, tau) tensor(delta, beta, -sigma) - tensor(g, beta, tau) tensor(delta, alpha, -sigma)) + hbar^2 (tensor(g, alpha, rho) tensor(delta, beta, -tau) - tensor(g, beta, rho) tensor(delta, alpha, -tau)) (tensor(g, mu, tau) tensor(delta, nu, -sigma) - tensor(g, nu, tau) tensor(delta, mu, -sigma)) \
+  & = - i hbar (tensor(g, mu, rho) tensor((tensor(S, alpha, beta)), nu, -sigma) - tensor(g, nu, rho) tensor((tensor(S, alpha, beta)), mu, -sigma)) + i hbar (tensor(g, alpha, rho) tensor((tensor(S, mu, nu)), beta, -sigma) - tensor(g, beta, rho) tensor((tensor(S, mu, nu)), alpha, -sigma)) \
+  & = i hbar (tensor(g, alpha, rho) tensor((tensor(S, mu, nu)), beta, -sigma) - tensor(g, beta, rho) tensor((tensor(S, mu, nu)), alpha, -sigma) - tensor(g, mu, rho) tensor((tensor(S, alpha, beta)), nu, -sigma) + tensor(g, nu, rho) tensor((tensor(S, alpha, beta)), mu, -sigma))
 $
