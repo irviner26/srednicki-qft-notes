@@ -136,8 +136,8 @@ $
 $
 Now, we can combine both equation in order to express the coefficient $a$.
 $
-             a(vb(k)) & = integral dd(x, 3) exp(-i k x) [i tensor(partial, -0) phi(x) + omega phi(x)]"," \
-  conjugate(a)(vb(k)) & = integral dd(x, 3) exp(i k x) [- i tensor(partial, -0) phi(x) + omega phi(x)]"."
+      a(vb(k)) & = integral dd(x, 3) exp(-i k x) [i tensor(partial, -0) phi(x) + omega phi(x)]"," \
+  a^(*)(vb(k)) & = integral dd(x, 3) exp(i k x) [- i tensor(partial, -0) phi(x) + omega phi(x)]"."
 $
 
 We now can start generalizing the hamiltonian. Remember that the classical hamiltonian is
@@ -165,5 +165,44 @@ $
 Integrating over volume, we could get the hamiltonian in terms of $a(vb(k))$.
 $
   H & = integral dd(x, 3) cal(H) \
-    & = - Omega_0 + 1/2 integral tilde(dd(k)) omega [a^*(vb(k)) a(vb(k)) + a(vb(k)) ]
+    & = - Omega_0 V + 1/2 integral tilde(dd(k)) omega [a^*(vb(k)) a(vb(k)) + a(vb(k)) a^(*)(vb(k))] "."
+$
+
+We now can transform the theory from classical to quantum mechanical using *canonical quantization*.
+$
+  commute(phi(vb(x), t), phi(vb(x)', t)) & = 0 "," \
+    commute(Pi(vb(x), t), Pi(vb(x)', t)) & = 0 "," \
+   commute(phi(vb(x), t), Pi(vb(x)', t)) & = i var((vb(x) - vb(x)')) "." \
+$
+
+We now can find the commutation relation between the operators $a$. Rewritting operator $a(vb(k))$ using conjugate momentum, we get
+$
+  a(vb(k)) & = integral dd(x, 3) e^(i(omega t - vb(k dotproduct x))) [i Pi(vb(x), t) + omega phi(vb(x), t)] \
+  conjugate(a)(vb(k')) & = integral dd(x', 3) e^(i(vb(k' dotproduct x') - omega t)) [-i Pi(vb(x)', t) + omega phi(vb(x)', t)] "."
+$
+Let us examine the commutation relation between nonconjugate operators with different momentum.
+$
+  commute(a(vb(k)), a(vb(k)')) & = integral dd(x, 3) dd(x', 3) e^(i(2 omega t - vb(k dotproduct x) - vb(k)' dotproduct vb(x)')) i omega (Pi phi' + phi Pi' - Pi' phi - phi' Pi) \
+  & = integral dd(x, 3) dd(x', 3) e^(i(2 omega t - vb(k dotproduct x) - vb(k)' dotproduct vb(x)')) i omega (commute(Pi, phi') + commute(phi, Pi')) \
+  & = integral dd(x, 3) dd(x', 3) e^(i(2 omega t - vb(k dotproduct x) - vb(k)' dotproduct vb(x)')) i omega (- i var((vb(x' - x))) + i var((vb(x - x')))) \
+  & = 0 "."
+$
+Now, for the conjugate operators,
+$
+  commute(conjugate(a)(vb(k)), conjugate(a)(vb(k)')) & = integral dots (- Pi phi' - phi Pi' + Pi' phi + phi' Pi) \
+                                                     & = 0 "."
+$
+Lastly, for the conjugate with nonconjugate operators
+$
+  commute(a(vb(k)), conjugate(a)(vb(k)')) & = integral dd(x, 3) dd(x', 3) e^(i (vb(k)' dotproduct vb(x)' - vb(k) dotproduct vb(x))) i omega (Pi phi' - phi Pi' + Pi' phi - phi' Pi) \
+  & = integral dd(x, 3) dd(x', 3) e^(i (vb(k)' dotproduct vb(x)' - vb(k) dotproduct vb(x))) i omega (commute(Pi, phi') + [Pi', phi]) \
+  & = integral dd(x, 3) dd(x', 3) e^(i (vb(k)' dotproduct vb(x)' - vb(k) dotproduct vb(x))) i omega (-2 i var((vb(x) - vb(x)'))) \
+  & = 2 omega integral dd(x, 3) e^(i vb(x) dotproduct (vb(k)' - vb(k))) \
+  & = 2 omega (2 pi)^3 var((vb(k) - vb(k)')) "."
+$
+Collecting them all, we get the commutation relations
+$
+                        commute(a(vb(k)), a(vb(k)')) & = 0 comma \
+  commute(conjugate(a)(vb(k)), conjugate(a)(vb(k)')) & = 0 comma \
+             commute(a(vb(k)), conjugate(a)(vb(k)')) & = 2 omega (2 pi)^3 var((vb(k) - vb(k)')) "."
 $

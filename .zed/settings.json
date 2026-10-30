@@ -4,13 +4,7 @@
       "settings": {
         "exportPdf": "onSave",
         "entry": "./main.typ",
-      },
-      "initialization_options": {
-        "exportPdf": "onSave",
-        "rootPath": null,
-        "project": {
-          "mainFile": "main.typ",
-        },
+        "outputPath": "main",
         "preview": {
           "background": {
             "enabled": true,
