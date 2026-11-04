@@ -136,8 +136,8 @@ $
 $
 Now, we can combine both equation in order to express the coefficient $a$.
 $
-             a(vb(k)) & = integral dd(x, 3) exp(-i k x) [i tensor(partial, -0) phi(x) + omega phi(x)]"," \
-  conjugate(a)(vb(k)) & = integral dd(x, 3) exp(i k x) [- i tensor(partial, -0) phi(x) + omega phi(x)]"."
+      a(vb(k)) & = integral dd(x, 3) exp(-i k x) [i tensor(partial, -0) phi(x) + omega phi(x)]"," \
+  a^(*)(vb(k)) & = integral dd(x, 3) exp(i k x) [- i tensor(partial, -0) phi(x) + omega phi(x)]"."
 $
 
 We now can start generalizing the hamiltonian. Remember that the classical hamiltonian is
@@ -165,5 +165,116 @@ $
 Integrating over volume, we could get the hamiltonian in terms of $a(vb(k))$.
 $
   H & = integral dd(x, 3) cal(H) \
-    & = - Omega_0 + 1/2 integral tilde(dd(k)) omega [a^*(vb(k)) a(vb(k)) + a(vb(k)) ]
+    & = - Omega_0 V + 1/2 integral tilde(dd(k)) omega [a^*(vb(k)) a(vb(k)) + a(vb(k)) a^(*)(vb(k))] "."
+$
+
+We now can transform the theory from classical to quantum mechanical using *canonical quantization*.
+$
+  commute(phi(vb(x), t), phi(vb(x)', t)) & = 0 "," \
+    commute(Pi(vb(x), t), Pi(vb(x)', t)) & = 0 "," \
+   commute(phi(vb(x), t), Pi(vb(x)', t)) & = i var((vb(x) - vb(x)')) "." \
+$
+
+We now can find the commutation relation between the operators $a$. Rewritting operator $a(vb(k))$ using conjugate momentum, we get
+$
+  a(vb(k)) & = integral dd(x, 3) e^(i(omega t - vb(k dotproduct x))) [i Pi(vb(x), t) + omega phi(vb(x), t)] \
+  conjugate(a)(vb(k')) & = integral dd(x', 3) e^(i(vb(k' dotproduct x') - omega t)) [-i Pi(vb(x)', t) + omega phi(vb(x)', t)] "."
+$
+Let us examine the commutation relation between nonconjugate operators with different momentum.
+$
+  commute(a(vb(k)), a(vb(k)')) & = integral dd(x, 3) dd(x', 3) e^(i(2 omega t - vb(k dotproduct x) - vb(k)' dotproduct vb(x)')) i omega (Pi phi' + phi Pi' - Pi' phi - phi' Pi) \
+  & = integral dd(x, 3) dd(x', 3) e^(i(2 omega t - vb(k dotproduct x) - vb(k)' dotproduct vb(x)')) i omega (commute(Pi, phi') + commute(phi, Pi')) \
+  & = integral dd(x, 3) dd(x', 3) e^(i(2 omega t - vb(k dotproduct x) - vb(k)' dotproduct vb(x)')) i omega (- i var((vb(x' - x))) + i var((vb(x - x')))) \
+  & = 0 "."
+$
+Now, for the conjugate operators,
+$
+  commute(conjugate(a)(vb(k)), conjugate(a)(vb(k)')) & = integral dots (- Pi phi' - phi Pi' + Pi' phi + phi' Pi) \
+                                                     & = 0 "."
+$
+Lastly, for the conjugate with nonconjugate operators
+$
+  commute(a(vb(k)), conjugate(a)(vb(k)')) & = integral dd(x, 3) dd(x', 3) e^(i (vb(k)' dotproduct vb(x)' - vb(k) dotproduct vb(x))) i omega (Pi phi' - phi Pi' + Pi' phi - phi' Pi) \
+  & = integral dd(x, 3) dd(x', 3) e^(i (vb(k)' dotproduct vb(x)' - vb(k) dotproduct vb(x))) i omega (commute(Pi, phi') + [Pi', phi]) \
+  & = integral dd(x, 3) dd(x', 3) e^(i (vb(k)' dotproduct vb(x)' - vb(k) dotproduct vb(x))) i omega (-2 i var((vb(x) - vb(x)'))) \
+  & = 2 omega integral dd(x, 3) e^(i vb(x) dotproduct (vb(k)' - vb(k))) \
+  & = 2 omega (2 pi)^3 var((vb(k) - vb(k)')) "."
+$
+Collecting them all, we get the commutation relations
+$
+                        commute(a(vb(k)), a(vb(k)')) & = 0 comma \
+  commute(conjugate(a)(vb(k)), conjugate(a)(vb(k)')) & = 0 comma \
+             commute(a(vb(k)), conjugate(a)(vb(k)')) & = 2 omega (2 pi)^3 var((vb(k) - vb(k)')) "."
+$
+Looking back at the integrated hamiltonian before,
+$
+  H & = - Omega_0 V + 1/2 integral tilde(dd(k)) omega {conjugate(a)(vb(k)), a(vb(k))} \
+  & = -Omega_0 V + integral tilde(dd(k)) omega conjugate(a)(vb(k)) a(vb(k)) - 1/2 integral tilde(dd(k)) omega commute(conjugate(a)(vb(k)), a(vb(k))) \
+  & = - Omega_0 V + integral tilde(dd(k)) omega conjugate(a)(vb(k)) a(vb(k)) + 1/2 integral frac(dd(k, 3), (2 pi)^3 2 omega) omega (2 omega (2 pi)^3 var((0))) \
+  & = - Omega_0 V + integral tilde(dd(k)) omega conjugate(a)(vb(k)) a(vb(k)) + (2 pi)^3 var((0)) 1/2 integral frac(dd(k, 3), (2 pi)^3) omega \
+  & = - Omega_0 V + integral tilde(dd(k)) omega conjugate(a)(vb(k)) a(vb(k)) + epsilon_0 V \
+  & = (epsilon_0 - Omega_0) V + integral tilde(dd(k)) omega conjugate(a)(vb(k)) a(vb(k)) comma
+$
+where $epsilon_0$ is the integral over $k$-volume and V is $(2pi)^3 var((0))$. Let us examine the integration of $epsilon_0$ if we set the upper limit to some value of $Lambda$. Assuming that $Lambda >> m$,
+$
+  1/(2 (2pi)^3) integral dd(k, 3) omega & = 1/(2 (2pi)^3) 4 pi integral_0^(Lambda) omega r_k^2 dd(r_k) \
+  & = 1/(4 pi^2) integral_0^(Lambda) omega (omega^2 - m^2) dd((omega^2 - m^2)^(1/2)) \
+  & = 1/(4 pi^2) integral_0^(Lambda) omega^2 sqrt(omega^2 - m^2) dd(omega) \
+  & = 1/(4 pi^2) 1/8 [Lambda (2 Lambda^2 - m^2) sqrt(Lambda^2 - m^2) - m^4 ln(frac(Lambda + sqrt(Lambda^2 - m^2), m))] \
+  & approx frac(Lambda^4, 16 pi^2) "."
+$
+The justification of this approximation is that the formalism of quantum field will break down at certain large energy level. The $Lambda$ value is called the *ultraviolet cutoff*. But for now, it is sufficient to treat both $Omega_0$ and $epsilon_0$ as some arbitrary values. So we can even choose $Omega_0 = epsilon_0$ thus eliminating the first term in the hamiltionian. We now have *re-derived* the hamiltonian for free relativistic bosons. The parameter $m$ now can be seen as particle's mass instead of an arbitrary value.
+
+Now, let us take a state of the form
+$
+  ket(k_1 dots k_n) equiv conjugate(a)(vb(k)_1) dots conjugate(a)(vb(k)_n) ket(0)
+$
+and the $ket(0)$ vacuum is annihilated by $a(vb(k)) ket(0)$. We can apply this to the quantum field hamiltonian that we have derived earlier.
+$
+  H ket(k_1 dots k_n) & = integral tilde(dd(k)) omega conjugate(a)(vb(k)) a(vb(k)) conjugate(a)(vb(k)_1) dots conjugate(a)(vb(k)_n) ket(0) \
+  & = integral tilde(dd(k)) omega conjugate(a)(vb(k)) commute(a(vb(k)), conjugate(a)(vb(k)_1)) dots conjugate(a)(vb(k)_n) ket(0) + integral tilde(dd(k)) omega conjugate(a)(vb(k)) conjugate(a)(vb(k)_1) a(vb(k)) conjugate(a)(vb(k)_2) dots conjugate(a)(vb(k)_n) ket(0) \
+  & = integral dd(k, 3) omega var((vb(k) - vb(k)_1)) conjugate(a)(vb(k)) conjugate(a)(vb(k)_2) dots conjugate(a)(vb(k)_n) ket(0) + integral tilde(dd(k)) omega conjugate(a)(vb(k)) conjugate(a)(vb(k)_1) a(vb(k)) conjugate(a)(vb(k)_2) dots conjugate(a)(vb(k)_n) ket(0) \
+  & = omega_1 conjugate(a)(vb(k)_1) dots conjugate(a)(vb(k)_n) ket(0) + ... + omega_n conjugate(a)(vb(k)_1) dots conjugate(a)(vb(k)_n) ket(0) \
+  & = (omega_1 + dots + omega_n) conjugate(a)(vb(k)_1) dots conjugate(a)(vb(k)_n) ket(0) \
+  H ket(k_1 dots k_n) & = [sum_(i=1)^(n) omega_i] ket(k_1 dots k_n) "."
+$
+Thus, the state ket is an eigenstate of the hamiltonian.
+
+Now, let us examine the Lorentz transformation of field equation again.
+$
+  U(Lambda)^(-1) phi(x) U(Lambda) & = phi(Lambda^(-1) x) \
+  integral tilde(dd(k)) [U(Lambda)^(-1) a(vb(k)) U(Lambda) e^(i k x) + U(Lambda)^(-1) conjugate(a)(vb(k)) U(Lambda) e^(- i k x)] & = integral tilde(dd(k)) [a(vb(k)) e^(i k Lambda^(-1) x) + conjugate(a)(vb(k)) e^(- i k Lambda^(-1) x)] comma
+$
+let us examine the exponential part where $k$ is contracted with a transformed $x$.
+$
+  tensor(k, mu) tensor((Lambda^(-1) x), -mu) & = tensor(k, mu) tensor((Lambda^(-1)), nu, -mu) tensor(x, -nu) \
+                                             & = tensor(Lambda, -mu, nu) tensor(k, mu) tensor(x, -nu) \
+                                             & = tensor(Lambda, mu, -nu) tensor(k, -mu) tensor(x, nu) \
+                                             & = tensor((Lambda k), -nu) tensor(x, nu) "."
+$
+Now, we set $k arrow Lambda^(-1) k'$.
+$
+  integral tilde(dd(k)) [U(Lambda)^(-1) a(vb(k)) U(Lambda) e^(i k x) + U(Lambda)^(-1) conjugate(a)(vb(k)) U(Lambda) e^(- i k x)] & = integral tilde(dd(k))' [a(Lambda^(-1) vb(k)') e^(i k' x) + conjugate(a)(Lambda^(-1) vb(k)') e^(- i k' x)]"."
+$
+Relabeling parameter $k'$ to $k$, we now have
+$
+  U(Lambda)^(-1) a(vb(k)) U(Lambda) = a(Lambda^(-1) vb(k)) \
+  U(Lambda)^(-1) conjugate(a)(vb(k)) U(Lambda) = conjugate(a)(Lambda^(-1) vb(k))"."
+$
+Now, if we apply the unitary operator to the previous eigenstate,
+$
+  U(Lambda) ket(k_1 dots k_n) & = U(Lambda) conjugate(a)(vb(k)_1) dots conjugate(a)(vb(k)_n) ket(0)comma
+$
+Let us take a look at the transformation of the creation operator.
+$
+  U(Lambda)^(-1) conjugate(a)(vb(k)) U(Lambda) & = conjugate(a)(Lambda^(-1) vb(k)) \
+  U(Lambda)^(-1) conjugate(a)(Lambda vb(q)) U(Lambda) & = conjugate(a)(vb(q)) \
+  conjugate(a)(Lambda vb(q)) U(Lambda) & = U(Lambda) conjugate(a)(vb(q)) comma \
+$
+so,
+$
+  U(Lambda) ket(k_1 dots k_n) & = U(Lambda) conjugate(a)(vb(k)_1) dots conjugate(a)(vb(k)_n) ket(0) \
+  & = conjugate(a)(Lambda vb(k)_1) dots conjugate(a)(Lambda vb(k)_n) U(Lambda) ket(0) \
+  & = conjugate(a)(Lambda vb(k)_1) dots conjugate(a)(Lambda vb(k)_n) ket(0) \
+  & = ket(Lambda k_1 dots Lambda k_n) "."
 $

@@ -1,21 +1,20 @@
 {
   "lsp": {
     "tinymist": {
-      "settings": {
-        "exportPdf": "onSave",
-        "entry": "./main.typ",
-      },
       "initialization_options": {
-        "exportPdf": "onSave",
-        "rootPath": null,
-        "project": {
-          "mainFile": "main.typ",
-        },
+        // Enable background preview
+        // Server will be running on 127.0.0.1:23635
         "preview": {
           "background": {
             "enabled": true,
           },
+          "invertColors": "never",
         },
+      },
+      "settings": {
+        "projectResolution": "lockDatabase",
+        "exportPdf": "onSave",
+        "outputPath": "$root/$name",
       },
     },
   },
