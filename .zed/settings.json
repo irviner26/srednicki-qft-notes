@@ -14,7 +14,7 @@
       "settings": {
         "projectResolution": "lockDatabase",
         "exportPdf": "onSave",
-        "outputPath": "$root/$name",
+        "outputPath": "$root/main",
       },
     },
   },
