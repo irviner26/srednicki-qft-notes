@@ -5,3 +5,4 @@
 #let conjugate(a) = $#a^dagger$
 #let commute(a, b) = $[#a, #b]$
 #let anticommute(a, b) = ${#a, #b}$
+#let bidir(a) = $accent(#a, arrow.l.r)$
