@@ -135,26 +135,35 @@ using $tensor(P, mu) ket(0) = bra(0) tensor(P, mu) = 0$,
 $
   braket(0, phi(x), 0) & = braket(0, phi(0), 0) equiv v"."
 $
-Let multiply the $conjugate(a)_(1)(- infinity)$ expression that we have derived before with ket of the ground state.
+Let multiply the $conjugate(a)_(1)(t)$ expression that we have derived before with ket of the ground state.
 $
-  conjugate(a)_(1)(- infinity) ket(0) & = conjugate(a)_(1)(+ infinity) ket(0) + i integral dd(x, 4) e^(i k_1 x) (- partial^2 + m^2) phi(x) ket(0) \
-  & = conjugate(a)_(1)(+ infinity) ket(0) + i integral dd(x, 4) e^(i k_1 x) (- partial^2 + m^2) v ket(0)"."
+  braket(0, conjugate(a)_(1)(t), 0) & = -i integral dd(k, 3) dd(x, 3) f_(1)(vb(k)) (e^(i k x) bidir(tensor(partial, -0)) braket(0, phi(x), 0)) \
+  & = -i integral dd(k, 3) dd(x, 3) f_(1)(vb(k)) (e^(i k x) bidir(tensor(partial, -0)) v) \
+  & = integral dd(k, 3) dd(x, 3) f_(1)(vb(k)) v k_0 e^(i k x) \
+  & = (2 pi)^3 integral dd(k, 3) f_(1)(vb(k)) delta(vb(k)) v k_0 e^(- i k_0 t) \
+  & = (2 pi)^3 v f_(1)(0) k_0 e^(- i k_0 t)
 $
 From this equation, we would like that $v$ is equal to 0 so that the creation operator acting on the ground state would create only a single particle state and not the linear combination of a single particle state.
 
 Let us consider another state with one-particle state with momentum denoted as $ket(p)$.
 $
   braket(p, phi(x), 0) & = braket(p, e^(-i tensor(P, mu) tensor(x, -mu)) phi(0) e^(+ i tensor(P, mu) tensor(x, -mu)), 0) \
-  & = braket(p, (1 + F(P x)) phi(0) (1 + G(P x)), 0) \
-  & = braket(p, e^(-i p x) phi(0), 0) \
-  & = e^(-i p x) braket(p, phi(0), 0) comma
+                       & = braket(p, (1 + F(P x)) phi(0) (1 + G(P x)), 0) \
+                       & = braket(p, e^(-i p x) phi(0), 0) \
+                       & = e^(-i p x) braket(p, phi(0), 0) comma
 $
 where $braket(p, phi(0), 0)$ is a Lorentz invariant value. Now that $braket(p, phi(0), 0)$ is a function of $p$, the only fitting possibility is that it is a function of $p^2$ since it is Lorentz invariant (also equal to $-m^2$). We set that $braket(p, phi(0), 0) = 1$. This is so that the one particle state is normalized.
+$
+  braket(p, conjugate(a)_(1)(t), 0) & = -i integral dd(k, 3) dd(x, 3) f_(1)(vb(k)) (e^(i k x) bidir(tensor(partial, -0)) e^(- i p x)) braket(p, phi(0), 0) \
+  & = -i integral dd(k, 3) dd(x, 3) f_(1)(vb(k)) (i p_0 + i k_0) e^(i (k - p) x) braket(p, phi(0), 0) \
+  & = (2 pi)^3 integral dd(k, 3) f_(1)(vb(k)) delta(vb(k) - vb(p)) (p_0 + k_0) e^(i (p_0 - k_0) t) braket(p, phi(0), 0) \
+  & = (2 pi)^3 2p_0 f_(1)(vb(p)) braket(p, phi(0), 0)"."
+$
 
 Finally we examine the state of $ket(p comma n)$ which is the multiparticle state with $n$ for other labels such as relative momenta.
 $
   braket(p comma n, phi(x), 0) & = braket(p comma n, e^(-i tensor(P, mu) tensor(x, -mu)) phi(0) e^(+ i tensor(P, mu)), 0) \
-  & = e^(-i p x) braket(p comma n, phi(0), 0)
+                               & = e^(-i p x) braket(p comma n, phi(0), 0)
 $
 Before we decide what type of value should this state have, let us test the one particle state with a normalizable state.
 $
@@ -171,3 +180,38 @@ $
   & = sum_n integral dd(p, 3) (2 pi)^3 (tensor(p, 0) + tensor(k, 0)) A_(n)(vb(p)) psi_n^*(vb(p)) f_(1)(vb(p)) e^(i (p_0 - k_0) t)
 $
 We see that $tensor(p, 0)$ is greater than $k_0$ by definition. When we take the limit $t arrow plus.minus infinity$, we see that it oscillates rapidly. Using the Riemann-Lebesgue lemma, the rapid oscillation then vanishes.
+$
+  "if" integral f(x) dd(x) < infinity comma quad "then" integral f(x) e^(-i x xi) dd(x) arrow 0 quad "as" quad xi arrow infinity"."
+$
+In another words, $A_(n)(vb(p))$ does not strictly need to be zero because for the case of $t arrow plus.minus infinity$, the integration already vanishes to zero.
+$
+  lim_(t arrow plus.minus infinity) braket(psi, conjugate(a)_(1)(t), 0) = 0"."
+$
+
+Let us consider the lagrangian
+$
+  cal(L) = - 1/2 (tensor(partial, mu) phi'') (tensor(partial, -mu) phi'') - 1/2 m^2 (phi^'')^2 + 1/6 g (phi'')^3 comma
+$
+where $phi''$ is the shifted and renormalized field. Let $phi'$ be the shifted field,
+$
+  phi'' equiv phi'/u"."
+$
+The lagrangian then becomes
+$
+  cal(L) = - 1/2 1/(u^2) (tensor(partial, mu) phi') (tensor(partial, -mu) phi') - 1/2 m^2 1/(u^2) (phi^')^2 + 1/6 1/u^3 g (phi')^3"."
+$
+Then let $phi$ be the original field, unshifted and unscaled,
+$
+  phi' = phi + v comma
+$
+our lagrangian then becomes
+$
+  cal(L) & = - 1/2 1/(u^2) (tensor(partial, mu) phi) (tensor(partial, -mu) phi) - 1/2 1/(u^2) m^2 (phi + v)^2 + 1/6 1/(u^3) g (phi + v)^3 \
+  & = - 1/2 1/(u^2) (tensor(partial, mu) phi) (tensor(partial, -mu) phi) - 1/2 1/(u^2) m^2 (phi^2 + 2 v phi + v^2) \ & quad quad + 1/6 1/u^3 g (phi^3 + 3 v phi^2 + 3 v^2 phi + v^3) \
+  & = - 1/2 1/(u^2) (tensor(partial, mu) phi) (tensor(partial, -mu) phi) - 1/2 (1/(u^2) + (g v)/(m^2 u^3)) m^2 phi^2 \ & quad quad + 1/6 1/(u^3) g phi^3 + (frac(g v^2, 2 u^3) + frac(2 m^2 v, 2 u^2)) phi + "const."
+$
+Relabeling the coefficients, we get
+$
+  cal(L) = -1/2 Z_(phi) (tensor(partial, mu) phi) (tensor(partial, -mu) phi) - 1/2 Z_m m^2 phi^2 + 1/6 Z_g g phi^3 + Y phi"."
+$
+The coefficients are then chosen to ensure the LSZ conditions.
